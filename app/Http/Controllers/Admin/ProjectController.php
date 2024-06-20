@@ -80,6 +80,7 @@ class ProjectController extends Controller
     {
         $project->title = $request->title;
         $project->description =$request->description;
+        $project->slug = Str::slug($project->title);
         $project->save();
         return view('admin.projects.show', compact('project'));
     }
@@ -90,6 +91,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index')->with('message','il post ' .  $project->title . ' è stato cancellato');
     }
 }

@@ -1,6 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if
+    <div>
+        
+    </div>
+    @endif
     <div class="container">
         <div class="ms-table-container mt-5">
             <div class="d-flex justify-content-between align-items-center">
