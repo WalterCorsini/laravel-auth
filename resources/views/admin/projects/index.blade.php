@@ -27,8 +27,9 @@
                         @foreach ($projectsList as $curProject)
                             <tr>
                                 <td>{{ $curProject->title }}</td>
-                                <td>{{ $curProject->description }}
-                                    <a href="{{ route('admin.projects.edit', ['project' =>$curProject->slug]) }}">Modifica</a>
+                                <td class="d-flex justify-content-center align-items-center me-2">
+                                    <span>{{ $curProject->description }}</span>
+                                    <a class="btn btn-danger" href="{{ route('admin.projects.edit', ['project' =>$curProject->slug]) }}">Modifica</a>
                                 </td>
                             </tr>
                         @endforeach
