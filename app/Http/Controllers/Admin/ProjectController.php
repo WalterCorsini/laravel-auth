@@ -43,14 +43,30 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
+
+// the method is passed an object as a parameter
+// in this case this method handles the exception by sending us to page 404 automatically
     public function show(Project $project)
     {
         return view("admin.projects.show",compact("project"));
     }
 
+
+// the slug that is searched for in the table is passed to the method as a parameter.
+// in this case the exceptions are not handled automatically and we create a condition to handle them
+    // public function show(string $slug)
+    // {
+    //     $project = Project::where('slug', $slug)->first();
+    //     if(!$project) {
+    //         abort(404);
+    //     }
+    //     return view('admin.projects.show', compact('project'));
+    // }
+
     /**
      * Show the form for editing the specified resource.
      */
+    // use dipendency injection to pass Slug
     public function edit(Project $project)
     {
         return view('admin.projects.edit',compact('project'));

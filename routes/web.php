@@ -26,6 +26,7 @@ Route::middleware('auth')
     ->name('admin.') // inizio di ogni nome delle rotte del gruppo
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        //i pass the slug parameter to the controller instead of passing the id
         Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
     });
 
