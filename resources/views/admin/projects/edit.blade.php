@@ -5,6 +5,8 @@
 {{-- <div class="pt-5">
     @include('partials.errors')
 </div> --}}
+
+{{--  --}}
 <form class="w-50 m-auto d-flex flex-column pt-5"
 action="{{ route('admin.projects.update',['project' => $project->slug]) }}" method="POST">
     @csrf
@@ -20,7 +22,7 @@ action="{{ route('admin.projects.update',['project' => $project->slug]) }}" meth
         @error('title')
             is-invalid
         @enderror"
-    type="text" id="title" name="title" value="{{ $project->title }}">
+    type="text" id="title" name="title" value="@old('title',{{ $project->title }})">
     <label for="description">Descrizione :
         @error('description')
             <span class="text-danger">
@@ -32,7 +34,7 @@ action="{{ route('admin.projects.update',['project' => $project->slug]) }}" meth
         @error('description')
             is-invalid
         @enderror"
-    type="text" id="description" name="description">{{ $project->description }}</textarea>
+    type="text" id="description" name="description">{{ @old('description',$project->description) }}</textarea>
     <button class="btn btn-success mt-3" type="submit"><i class="fa-solid fa-plus"></i></button>
 </form>
 @endsection
