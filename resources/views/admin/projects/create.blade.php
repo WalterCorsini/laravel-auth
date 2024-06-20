@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="pt-5">
+{{-- <div class="pt-5">
     @include('partials.errors')
-</div>
+</div> --}}
 <form class="w-50 m-auto d-flex flex-column pt-5"
 action="{{ route('admin.projects.store') }}" method="POST">
     @csrf
