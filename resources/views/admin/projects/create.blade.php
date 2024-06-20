@@ -1,12 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
-{{-- <div class="pt-5">
-    @include('partials.errors')
-</div> --}}
+
+{{-- form --}}
 <form class="w-50 m-auto d-flex flex-column pt-5"
-action="{{ route('admin.projects.store') }}" method="POST">
+    action="{{ route('admin.projects.store') }}"
+    method="POST">
     @csrf
+
+    {{-- title --}}
     <label for="title">Titolo :
         @error('title')
             <span class="text-danger">
@@ -18,7 +20,10 @@ action="{{ route('admin.projects.store') }}" method="POST">
         @error('title')
             is-invalid
         @enderror"
-    type="text" id="title" name="title" value="{{ @old('title') }}">
+        type="text" id="title" name="title" value="{{ @old('title') }}">
+    {{-- /title --}}
+
+    {{-- description --}}
     <label for="description">Descrizione :
         @error('description')
             <span class="text-danger">
@@ -30,7 +35,13 @@ action="{{ route('admin.projects.store') }}" method="POST">
         @error('description')
             is-invalid
         @enderror"
-    type="text" id="description" name="description"></textarea>
+        type="text" id="description" name="description"></textarea>
+    {{-- description --}}
+
+    {{-- button --}}
     <button class="btn btn-success mt-3"><i class="fa-solid fa-plus"></i></button>
+
 </form>
+{{-- /form --}}
+
 @endsection
