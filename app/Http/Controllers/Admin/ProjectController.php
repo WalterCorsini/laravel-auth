@@ -77,10 +77,9 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $project->title = $request->title;
-        $project->description =$request->description;
-        $project->slug = Str::slug($project->title);
-        $project->save();
+        $data = $request->all();
+        $project->slug = $data['title'];
+        $project->update($data);
         return view('admin.projects.show', compact('project'));
     }
 
