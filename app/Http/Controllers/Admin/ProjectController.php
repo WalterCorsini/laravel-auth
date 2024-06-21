@@ -8,6 +8,8 @@ use App\Models\Project;
 use Illuminate\Support\Str;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
+
 class ProjectController extends Controller
 {
     /**
@@ -16,7 +18,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projectsList = Project::all();
-        return view('admin.projects.index',compact('projectsList'));
+        return view('admin.projects.index', compact('projectsList'));
     }
 
     /**
@@ -35,6 +37,7 @@ class ProjectController extends Controller
         $newItem = new Project();
         $newItem->title = $request['title'];
         $newItem->description = $request['description'];
+        $newItem->cover_image = Storage::put('img', $request->cover_image);
         $newItem->slug = Str::slug($newItem->title);
         $newItem->save();
         return redirect()->route("admin.projects.index");
@@ -44,16 +47,16 @@ class ProjectController extends Controller
      * Display the specified resource.
      */
 
-// the method is passed an object as a parameter
-// in this case this method handles the exception by sending us to page 404 automatically
+    // the method is passed an object as a parameter
+    // in this case this method handles the exception by sending us to page 404 automatically
     public function show(Project $project)
     {
-        return view("admin.projects.show",compact("project"));
+        return view("admin.projects.show", compact("project"));
     }
 
 
-// the slug that is searched for in the table is passed to the method as a parameter.
-// in this case the exceptions are not handled automatically and we create a condition to handle them
+    // the slug that is searched for in the table is passed to the method as a parameter.
+    // in this case the exceptions are not handled automatically and we create a condition to handle them
     // public function show(string $slug)
     // {
     //     $project = Project::where('slug', $slug)->first();
@@ -69,7 +72,7 @@ class ProjectController extends Controller
     // use dipendency injection to pass Slug
     public function edit(Project $project)
     {
-        return view('admin.projects.edit',compact('project'));
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -77,10 +80,19 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $data = $request->all();
+        $data = $request->validated();
         // questo metodo crea la copia esatta del titolo è quindi non va bene.
         // $data['slug'] = $data['title'];
         //usiamo questo metodo perche lo slug si basa sul titolo ma elimina gli spazi e lo rende minuscolo.
+
+        if ($request->hasFile('cover_image')) {
+            if ($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
+            $image = Storage::put('img', $request->cover_image);
+            $data['cover_image'] = $image;
+        }
+        $data['cover_image'] = Storage::put('img', $request->cover_image);
         $data['slug'] = Str::slug($data['title']);
         $project->update($data);
         return view('admin.projects.show', compact('project'));
@@ -91,7 +103,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->cover_image) {
+            Storage::delete($project->cover_image);
+        }
         $project->delete();
-        return redirect()->route('admin.projects.index')->with('message','il post ' .  $project->title . ' è stato cancellato');
+        return redirect()->route('admin.projects.index')->with('message', 'il post ' .  $project->title . ' è stato cancellato');
     }
 }

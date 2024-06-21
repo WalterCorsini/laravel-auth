@@ -5,7 +5,7 @@
 {{-- form --}}
 <form class="w-50 m-auto d-flex flex-column pt-5"
     action="{{ route('admin.projects.store') }}"
-    method="POST">
+    method="POST" enctype="multipart/form-data">
     @csrf
 
     {{-- title --}}
@@ -20,7 +20,7 @@
         @error('title')
             is-invalid
         @enderror"
-        type="text" id="title" name="title" value="{{ @old('title') }}">
+        type="text" id="title" name="title" value="{{ old('title') }}">
     {{-- /title --}}
 
     {{-- description --}}
@@ -37,6 +37,11 @@
         @enderror"
         type="text" id="description" name="description"></textarea>
     {{-- description --}}
+
+    {{-- file --}}
+    <label for="cover_image"> Immagine</label>
+    <input type="file" name="cover_image" id="cover_image">
+    {{-- file --}}
 
     {{-- button --}}
     <button class="btn btn-success mt-3"><i class="fa-solid fa-plus"></i></button>

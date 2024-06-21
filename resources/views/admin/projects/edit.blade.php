@@ -8,7 +8,7 @@
 
 {{-- form --}}
 <form class="w-50 m-auto d-flex flex-column pt-5"
-action="{{ route('admin.projects.update',['project' => $project->slug]) }}" method="POST">
+action="{{ route('admin.projects.update',['project' => $project->slug]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('put')
 
@@ -42,6 +42,24 @@ action="{{ route('admin.projects.update',['project' => $project->slug]) }}" meth
         @enderror"
         type="text" id="description" name="description">{{ @old('description',$project->description) }}</textarea>
     {{-- description --}}
+
+
+    {{-- file --}}
+    <label for="cover_image"> Immagine</label>
+    <input class="form-control
+    @error('cover_image')
+        is-invalid
+    @enderror"
+    type="file" name="cover_image" id="cover_image">
+    @error('cover_image')
+    <span class="text-danger">
+        {{ $errors->first('cover_image') }}
+    </span>
+    @enderror
+    {{-- file --}}
+    <div class="w-50">
+        <img class="w-50" src="{{ asset('storage/' . $project->cover_image) }}" alt="">
+    </div>
 
     <button class="btn btn-success mt-3" type="submit"><i class="fa-solid fa-plus"></i></button>
 
