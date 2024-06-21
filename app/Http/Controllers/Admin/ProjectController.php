@@ -32,10 +32,9 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $data = $request->all();
         $newItem = new Project();
-        $newItem->title = $data['title'];
-        $newItem->description = $data['description'];
+        $newItem->title = $request['title'];
+        $newItem->description = $request['description'];
         $newItem->slug = Str::slug($newItem->title);
         $newItem->save();
         return redirect()->route("admin.projects.index");
