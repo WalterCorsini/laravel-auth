@@ -78,7 +78,10 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->all();
-        $project->slug = $data['title'];
+        // questo metodo crea la copia esatta del titolo è quindi non va bene.
+        // $data['slug'] = $data['title'];
+        //usiamo questo metodo perche lo slug si basa sul titolo ma elimina gli spazi e lo rende minuscolo.
+        $data['slug'] = Str::slug($data['title']);
         $project->update($data);
         return view('admin.projects.show', compact('project'));
     }
