@@ -24,7 +24,7 @@ action="{{ route('admin.projects.update',['project' => $project->slug]) }}" meth
         @error('title')
             is-invalid
         @enderror"
-        type="text" id="title" name="title" value="@old('title',{{ $project->title }})">
+        type="text" id="title" name="title" value="{{ old('title',$project->title) }}">
     {{-- title --}}
 
 
@@ -40,7 +40,7 @@ action="{{ route('admin.projects.update',['project' => $project->slug]) }}" meth
         @error('description')
             is-invalid
         @enderror"
-        type="text" id="description" name="description">{{ @old('description',$project->description) }}</textarea>
+        type="text" id="description" name="description">{{ old('description',$project->description) }}</textarea>
     {{-- description --}}
 
 

@@ -20,7 +20,7 @@
         @error('title')
             is-invalid
         @enderror"
-        type="text" id="title" name="title" value="{{ old('title') }}">
+        type="text" id="title" name="title" value="{{old('title')}}">
     {{-- /title --}}
 
     {{-- description --}}
@@ -35,7 +35,7 @@
         @error('description')
             is-invalid
         @enderror"
-        type="text" id="description" name="description"></textarea>
+        type="text" id="description" name="description">{{old('description')}}</textarea>
     {{-- description --}}
 
     {{-- file --}}

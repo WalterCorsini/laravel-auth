@@ -27,6 +27,8 @@
 
             </div>
             <hr>
+<div class="table-responsive">
+
 
             {{-- table --}}
             <table class="table">
@@ -34,9 +36,9 @@
                 {{-- thead --}}
                 <thead>
                     <tr>
-                        <th scope="col">Title</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Button</th>
+                        <th class="w-25" scope="col">Title</th>
+                        <th class="w-25" scope="col">Description</th>
+                        <th class="w-25" scope="col">Button</th>
                     </tr>
                 </thead>
 
@@ -71,6 +73,7 @@
 
             </table>
             {{-- /table --}}
+        </div>
 
     </div>
 
