@@ -41,6 +41,10 @@
     {{-- file --}}
     <label for="cover_image"> Immagine</label>
     <input type="file" name="cover_image" id="cover_image">
+    <img id="imagePreview" class="hide" src="" alt="new-image">
+    <div>
+        <a id="btnDelete" class="btn btn-danger hide" >rimuovi</a>
+    </div>
     {{-- file --}}
 
     {{-- button --}}
@@ -48,5 +52,4 @@
 
 </form>
 {{-- /form --}}
-
 @endsection
