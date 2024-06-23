@@ -31,19 +31,27 @@
             <strong>Titolo :</strong>
             {{ $project->title }}
         </p>
+
+        {{-- description --}}
         @if (!empty($project->description))
             <p>
                 <strong>Descrizione :</strong>
                 {{ $project->description }}
             </p>
         @endif
+        {{-- /description --}}
+
         <p>
             <strong>slug :</strong>
             {{ $project->slug }}
         </p>
+
+        {{-- img --}}
         <div class="w-50">
             <img class="w-50" src="{{ asset('storage/' . $project->cover_image) }}" alt="">
         </div>
+        {{-- /img --}}
+
     </div>
     {{-- details record --}}
 @endsection

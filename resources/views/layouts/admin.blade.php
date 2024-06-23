@@ -74,6 +74,11 @@
                                     <i class="fa-solid fa-plus"></i> Add
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route('admin.projects.trash') }}">
+                                    <i class="fa-solid fa-trash"></i> Trash
+                                </a>
+                            </li>
                         </ul>
 
 

@@ -37,7 +37,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $newItem = new Project();
         $newItem->fill($data);
-        if(isset($data['cover_image'])){
+        if (isset($data['cover_image'])) {
             $newItem->cover_image = Storage::put('img', $data['cover_image']);
         }
         $newItem->slug = Str::slug($newItem->title);
@@ -88,10 +88,10 @@ class ProjectController extends Controller
         //usiamo questo metodo perche lo slug si basa sul titolo ma elimina gli spazi e lo rende minuscolo.
 
         if (isset($data['cover_image'])) {
-            if($project->cover_image){
+            if ($project->cover_image) {
                 Storage::delete($project->cover_image);
             }
-                $data['cover_image'] = Storage::put('img', $data['cover_image']);
+            $data['cover_image'] = Storage::put('img', $data['cover_image']);
         }
         $data['slug'] = Str::slug($data['title']);
         $project->update($data);
@@ -107,6 +107,29 @@ class ProjectController extends Controller
             Storage::delete($project->cover_image);
         }
         $project->delete();
-        return redirect()->route('admin.projects.index')->with('message', 'il post ' .  $project->title . ' è stato cancellato');
+        return redirect()->route('admin.projects.index')->with('message', 'il progetto ' .  $project->title . ' è stato cancellato');
+    }
+
+    public function trash()
+    {
+        $trashList = Project::onlyTrashed()->get();
+        return view('admin.projects.trash', compact('trashList'));
+    }
+
+    public function forceDelete($id){
+        $project = Project::onlyTrashed()->where('id', $id)->firstOrFail();
+        Project::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->route('admin.projects.trash')->with('message' , 'il progetto '. $project->title .' è stato cancellato definitivamente');
+    }
+
+    public function restore($id){
+        $project = Project::onlyTrashed()->where('id', $id)->firstOrFail();
+        Project::onlyTrashed()->find($id)->restore();
+        return redirect()->route('admin.projects.trash')->with('message' , 'il progetto '. $project->title .' è stato ripristinato');
+    }
+
+    public function restoreAll(){
+        Project::onlyTrashed()->restore();
+        return redirect()->route('admin.projects.trash')->with('message' , 'sono sati ripristinati tutti i progetti');
     }
 }

@@ -28,6 +28,9 @@ Route::middleware('auth')
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         //i pass the slug parameter to the controller instead of passing the id
         Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
+        Route::get('/trash', [ProjectController::class, 'trash'])->name('projects.trash');
+        Route::delete('/projects/{id}/forceDelete', [ProjectController::class, 'forceDelete'])->name('projects.forceDelete');
+        Route::put('/projects/{id}/restore', [ProjectController::class, 'restore'])->name('projects.restore');
+        Route::post('/projects/restoreall', [ProjectController::class, 'restoreall'])->name('projects.restoreall');
     });
-
 require __DIR__ . '/auth.php';
