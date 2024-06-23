@@ -62,6 +62,7 @@ btnDeleteElem.addEventListener('click', function(e){
     e.preventDefault();
     btnDeleteElem.classList.add('hide');
     imgElem.classList.add('hide');
+    oldImgElem.classList.remove('hide');
     inputElem.value = "";
 });
 

@@ -82,6 +82,13 @@
 
         {{-- /file --}}
 
+        {{-- check remove image --}}
+        <div class="{{empty($project->cover_image)? 'hide' : '' }}">
+            <label for="removeImage">Rimuovi immagine :</label>
+            <input type="checkbox" id="removeImage" name="removeImage">
+        </div>
+        {{-- /check remove image --}}
+
         {{-- old and new img --}}
         <div class="w-100 mt-2">
             <img id="oldImg" class="w-25" src="{{ asset('storage/' . $project->cover_image) }}" alt="">

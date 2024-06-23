@@ -93,6 +93,12 @@ class ProjectController extends Controller
             }
             $data['cover_image'] = Storage::put('img', $data['cover_image']);
         }
+        // remove image without add other
+        if($request['removeImage'] != null){
+            Storage::delete($project->cover_image);
+        }
+        // /remove image without add other
+
         $data['slug'] = Str::slug($data['title']);
         $project->update($data);
         return view('admin.projects.show', compact('project'));
