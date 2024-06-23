@@ -4,6 +4,7 @@ import.meta.glob(["../img/**"]);
 import * as bootstrap from "bootstrap";
 
 // mi collego a degli elemnti in pagina
+const oldImgElem = document.getElementById('oldImg')
 const imgElem = document.getElementById('imagePreview');
 const btnDeleteElem = document.getElementById('btnDelete');
 const inputElem = document.getElementById('cover_image');
@@ -19,6 +20,7 @@ inputElem.addEventListener('change',function(e){
         // rimuove le classi hide dai due elementi in pagine ( anteprima e bottone rimuovi)
         imgElem.classList.remove('hide');
         btnDeleteElem.classList.remove('hide');
+        oldImgElem.classList.add('hide');
     };
     // questa riga usa un metodo per leggere il contenuto e convertirlo in un URL per essere utilizzato come directory e non letto come semplice testo.
     reader.readAsDataURL(e.target.files[0]);
@@ -28,5 +30,6 @@ btnDeleteElem.addEventListener('click', function(e){
     e.preventDefault();
     btnDeleteElem.classList.add('hide');
     imgElem.classList.add('hide');
+    inputElem.value = "";
 });
 

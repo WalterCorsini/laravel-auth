@@ -57,15 +57,15 @@ action="{{ route('admin.projects.update',['project' => $project->slug]) }}" meth
     </span>
     @enderror
     {{-- file --}}
-    <div class="w-50">
-        <img class="w-50" src="{{ asset('storage/' . $project->cover_image) }}" alt="">
-    </div>
-    <img id="imagePreview" class="hide" src="" alt="new-image">
+    <div class="w-100 mt-2">
+        <img id="oldImg" class="w-25" src="{{ asset('storage/' . $project->cover_image) }}" alt="">
+        <img id="imagePreview" class="w-25 hide" src="" alt="new-image">
+    </div class="img-container">
     <div>
-        <a id="btnDelete" class="btn btn-danger hide" >rimuovi</a>
+        <button class="btn btn-success mt-3 w-25" type="submit">Aggiungi</button>
+        <a id="btnDelete" class="btn btn-danger mt-3 hide w-25" >rimuovi</a>
     </div>
 
-    <button class="btn btn-success mt-3" type="submit"><i class="fa-solid fa-plus"></i></button>
 
 </form>
 {{-- /form --}}

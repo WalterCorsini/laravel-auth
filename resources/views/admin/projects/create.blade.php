@@ -50,14 +50,14 @@
         {{ $errors->first('cover_image') }}
     </span>
     @enderror
-    <img id="imagePreview" class="hide" src="" alt="new-image">
+    <img id="imagePreview" class="hide w-25 mt-3" src="" alt="new-image">
     <div>
-        <a id="btnDelete" class="btn btn-danger hide" >rimuovi</a>
+        <button class="btn btn-success mt-3 w-25"> Aggiungi </button>
+        <a id="btnDelete" class="btn btn-danger mt-3 hide w-25" >rimuovi</a>
     </div>
     {{-- file --}}
 
     {{-- button --}}
-    <button class="btn btn-success mt-3"><i class="fa-solid fa-plus"></i></button>
 
 </form>
 {{-- /form --}}
