@@ -82,8 +82,9 @@
 
         {{-- /file --}}
 
+        {{--  probabilmente da gestire in modo dinamico con javascript --}}
         {{-- check remove image --}}
-        <div class="{{empty($project->cover_image)? 'hide' : '' }}">
+        <div id="check" class="{{ ($project->cover_image === NULL)? 'hide' : ''}}}">
             <label for="removeImage">Rimuovi immagine :</label>
             <input type="checkbox" id="removeImage" name="removeImage">
         </div>
