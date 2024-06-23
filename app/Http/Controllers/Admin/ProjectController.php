@@ -34,10 +34,12 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        $data = $request->validated();
         $newItem = new Project();
-        $newItem->title = $request['title'];
-        $newItem->description = $request['description'];
-        $newItem->cover_image = Storage::put('img', $request->cover_image);
+        $newItem->fill($data);
+        if(isset($data['cover_image'])){
+            $newItem->cover_image = Storage::put('img', $data['cover_image']);
+        }
         $newItem->slug = Str::slug($newItem->title);
         $newItem->save();
         return redirect()->route("admin.projects.index");
@@ -85,14 +87,12 @@ class ProjectController extends Controller
         // $data['slug'] = $data['title'];
         //usiamo questo metodo perche lo slug si basa sul titolo ma elimina gli spazi e lo rende minuscolo.
 
-        if ($request->hasFile('cover_image')) {
-            if ($project->cover_image) {
+        if (isset($data['cover_image'])) {
+            if($project->cover_image){
                 Storage::delete($project->cover_image);
             }
-            $image = Storage::put('img', $request->cover_image);
-            $data['cover_image'] = $image;
+                $data['cover_image'] = Storage::put('img', $data['cover_image']);
         }
-        $data['cover_image'] = Storage::put('img', $request->cover_image);
         $data['slug'] = Str::slug($data['title']);
         $project->update($data);
         return view('admin.projects.show', compact('project'));
