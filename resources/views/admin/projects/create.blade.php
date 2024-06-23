@@ -40,7 +40,16 @@
 
     {{-- file --}}
     <label for="cover_image"> Immagine</label>
-    <input type="file" name="cover_image" id="cover_image">
+    <input class="form-control
+    @error('cover_image')
+        is-invalid
+    @enderror"
+    type="file" name="cover_image" id="cover_image">
+    @error('cover_image')
+    <span class="text-danger">
+        {{ $errors->first('cover_image') }}
+    </span>
+    @enderror
     <img id="imagePreview" class="hide" src="" alt="new-image">
     <div>
         <a id="btnDelete" class="btn btn-danger hide" >rimuovi</a>

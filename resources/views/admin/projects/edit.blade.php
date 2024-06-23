@@ -60,6 +60,10 @@ action="{{ route('admin.projects.update',['project' => $project->slug]) }}" meth
     <div class="w-50">
         <img class="w-50" src="{{ asset('storage/' . $project->cover_image) }}" alt="">
     </div>
+    <img id="imagePreview" class="hide" src="" alt="new-image">
+    <div>
+        <a id="btnDelete" class="btn btn-danger hide" >rimuovi</a>
+    </div>
 
     <button class="btn btn-success mt-3" type="submit"><i class="fa-solid fa-plus"></i></button>
 
