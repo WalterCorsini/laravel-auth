@@ -3,6 +3,7 @@ import "~resources/scss/app.scss";
 import.meta.glob(["../img/**"]);
 import * as bootstrap from "bootstrap";
 
+
 // section modal for softDeletes
 
 const deleteBtns = document.querySelectorAll('.delete button');
@@ -66,5 +67,13 @@ btnDeleteElem.addEventListener('click', function(e){
     inputElem.value = "";
 });
 
+// runs after the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    var checkElement = document.getElementById('check');
+    var coverImageValue = checkElement.getAttribute('data-cover-image');
 
+    if (coverImageValue === null || coverImageValue === '') {
+        checkElement.classList.add('hide');
+    }
+});
 

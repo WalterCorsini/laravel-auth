@@ -96,6 +96,7 @@ class ProjectController extends Controller
         // remove image without add other
         if($request['removeImage'] != NULL && $project->cover_image != NULL){
             Storage::delete($project->cover_image);
+            $project->cover_image = NULL;
         }
         // /remove image without add other
 

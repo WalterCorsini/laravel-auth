@@ -82,9 +82,8 @@
 
         {{-- /file --}}
 
-        {{--  probabilmente da gestire in modo dinamico con javascript --}}
         {{-- check remove image --}}
-        <div id="check" class="{{ ($project->cover_image === NULL)? 'hide' : ''}}}">
+        <div id="check" data-cover-image="{{$project->cover_image}}" class="{{ ($project->cover_image !== NULL)? 'hide' : ''}}}">
             <label for="removeImage">Rimuovi immagine :</label>
             <input type="checkbox" id="removeImage" name="removeImage">
         </div>
@@ -108,4 +107,12 @@
 
     </form>
     {{-- /form --}}
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Controlla se cover_image è null o vuoto
+            if ({{ $project->cover_image === null || $project->cover_image === '' }}) {
+                document.getElementById('check').classList.add('hide');
+            }
+        });
+        </script> --}}
 @endsection
