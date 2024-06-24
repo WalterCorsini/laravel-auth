@@ -117,24 +117,28 @@ class ProjectController extends Controller
         return redirect()->route('admin.projects.index')->with('message', 'il progetto ' .  $project->title . ' è stato cancellato');
     }
 
+    // show the trashed projects
     public function trash()
     {
         $trashList = Project::onlyTrashed()->get();
         return view('admin.projects.trash', compact('trashList'));
     }
 
+    // permanently delete a record
     public function forceDelete($id){
         $project = Project::onlyTrashed()->where('id', $id)->firstOrFail();
         Project::onlyTrashed()->find($id)->forceDelete();
         return redirect()->route('admin.projects.trash')->with('message' , 'il progetto '. $project->title .' è stato cancellato definitivamente');
     }
 
+    // restore a record
     public function restore($id){
         $project = Project::onlyTrashed()->where('id', $id)->firstOrFail();
         Project::onlyTrashed()->find($id)->restore();
         return redirect()->route('admin.projects.trash')->with('message' , 'il progetto '. $project->title .' è stato ripristinato');
     }
 
+    // restore all record
     public function restoreAll(){
         Project::onlyTrashed()->restore();
         return redirect()->route('admin.projects.trash')->with('message' , 'sono sati ripristinati tutti i progetti');

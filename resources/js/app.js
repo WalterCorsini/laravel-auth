@@ -69,8 +69,8 @@ btnDeleteElem.addEventListener('click', function(e){
 
 // runs after the page loads
 document.addEventListener('DOMContentLoaded', function() {
-    var checkElement = document.getElementById('check');
-    var coverImageValue = checkElement.getAttribute('data-cover-image');
+    const checkElement = document.getElementById('check');
+    const coverImageValue = checkElement.getAttribute('data-cover-image');
 
     if (coverImageValue === null || coverImageValue === '') {
         checkElement.classList.add('hide');
