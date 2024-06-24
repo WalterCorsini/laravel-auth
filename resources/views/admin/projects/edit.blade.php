@@ -98,7 +98,7 @@
 
         {{-- button add and remove --}}
         <div>
-            <button class="btn btn-success mt-3 w-25" type="submit">Aggiungi</button>
+            <button class="btn btn-success mt-3 w-25" type="submit">Aggiorna</button>
             <a id="btnDelete" class="btn btn-danger mt-3 hide w-25">rimuovi</a>
         </div>
         {{-- /button add and remove --}}
