@@ -83,10 +83,12 @@
         {{-- /file --}}
 
         {{-- check remove image --}}
-        <div id="check" data-cover-image="{{$project->cover_image}}" class="{{ ($project->cover_image !== NULL)? 'hide' : ''}}}">
-            <label for="removeImage">Rimuovi immagine :</label>
-            <input type="checkbox" id="removeImage" name="removeImage">
-        </div>
+        @if ($project->cover_image !== NULL)
+        <label for="removeImage">Rimuovi immagine :</label>
+        <input type="checkbox" id="removeImage" name="removeImage">
+        @endif
+        {{-- <div id="check" data-cover-image="{{$project->cover_image}}" class="{{ ($project->cover_image !== NULL)? 'hide' : ''}}}">
+        </div> --}}
         {{-- /check remove image --}}
 
         {{-- old and new img --}}

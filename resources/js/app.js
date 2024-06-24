@@ -68,12 +68,12 @@ btnDeleteElem.addEventListener('click', function(e){
 });
 
 // runs after the page loads
-document.addEventListener('DOMContentLoaded', function() {
-    const checkElement = document.getElementById('check');
-    const coverImageValue = checkElement.getAttribute('data-cover-image');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const checkElement = document.getElementById('check');
+//     const coverImageValue = checkElement.getAttribute('data-cover-image');
 
-    if (coverImageValue === null || coverImageValue === '') {
-        checkElement.classList.add('hide');
-    }
-});
+//     if (coverImageValue === null || coverImageValue === '') {
+//         checkElement.classList.add('hide');
+//     }
+// });
 
